@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,8 +18,9 @@ public class MusicController {
 //            public MusicController(MusicService)
    private MusicService music;
     @PostMapping("/SaveMusicInfo")
-    public ResponseEntity<?> save(@RequestBody User user ){
+    public ResponseEntity<?> save(@RequestBody @Valid User user ){
         User savedUser=music.add(user);
+        System.out.println("Im here");
         return new ResponseEntity<User>(savedUser, HttpStatus.OK);
     }
 
